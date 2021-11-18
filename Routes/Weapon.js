@@ -3,16 +3,23 @@ const router = express.Router();
 
 const {
     getAllEquipment,
-    getWeaponbyName,
-    getWeaponbyAttributes,
-    getWeaponbyMaterial,
+    getWeaponByName,
+    getWeaponByAttributes,
+    getWeaponByMaterial,
+    getWeaponByPrice,
+    getInCart,
     createWeapon,
-    editWeapon,
-    deleteWeapon,
-} = require('../Controllers/Jobs')
+    EditWeapon,
+    DeleteWeapon,
+} = require('../Controllers/Weapons')
 
-router.route("/").
-router.route("/:id").
+router.route("/").get(getAllEquipment),post(createWeapon)
+router.route("/:id").put(EditWeapon).delete(DeleteWeapon)
+router.route("/:byname").get(getWeaponByName)
+router.route("/:byattributes").get(getWeaponByAttributes)
+router.route("/:bymaterial").get(getWeaponByMaterial)
+router.route("/:byprice").get(getWeaponByPrice)
+router.route("/:cart").get(getInCart)
 
 
 module.exports = router;
