@@ -48,7 +48,7 @@ app.use([express.urlencoded({ extended: false }), express.json()])
 .get('/', (req, res)=>{
   res.send('<h1>Job API</h1><a href="/api-docs">Documation<a>')
 })
-
+//
 .use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
   .use("/api/v1/jobs", middleAuth, Weapons)
