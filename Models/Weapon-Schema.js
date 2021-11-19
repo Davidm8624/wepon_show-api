@@ -16,6 +16,10 @@ const WeaponSchema = new mongoose.Schema({
 
         }
     },
+    name: {
+        type: String,
+        default: 'unnamed',
+    },
     Attribute1: {
         type: String,
         required: [true, 'must choose a Attribute or select "none"'],

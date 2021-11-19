@@ -51,7 +51,7 @@ app.use([express.urlencoded({ extended: false }), express.json()])
 //
 .use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
-  .use("/api/v1/jobs", middleAuth, Weapons)
+  .use("/api/v1/weapon", middleAuth, Weapons)
   .use("/api/v1/auth", Auth)
 .use(errorMiddlewere)
 .use(notFoundMiddlewere)

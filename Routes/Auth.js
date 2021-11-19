@@ -5,7 +5,7 @@ const { Register, Login } = require("../Controllers/Auth")
 
 // const authMiddlewere = require('../Middleware/Auth')
 
-router.route('/Register').post(Register)
+router.route('/register').post(Register)
 router.route('/login').post(Login)
 
 module.exports = router
