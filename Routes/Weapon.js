@@ -13,7 +13,7 @@ const {
     DeleteWeapon,
 } = require('../Controllers/Weapons')
 
-router.route("/").get(getAllEquipment),post(createWeapon)
+router.route("/").get(getAllEquipment).post(createWeapon)
 router.route("/:id").put(EditWeapon).delete(DeleteWeapon)
 router.route("/:byname").get(getWeaponByName)
 router.route("/:byattributes").get(getWeaponByAttributes)

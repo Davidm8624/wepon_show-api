@@ -12,13 +12,13 @@ const { Auth, Weapons } = require("./Routes");
 
 //middleware
 const middleAuth = require('./Middleware/Auth')
-const errorMiddlewere = require("./Middleware/Error-handler");
-const notFoundMiddlewere = require("./Middleware/Not-found")
+const errorMiddlewere = require("./Middleware/Errorhandler");
+const notFoundMiddlewere = require("./Middleware/Notfound")
 
 //swaggerUI
 const swaggerUI = require("swagger-ui-express")
-const YAML= require("yamljs")
-const swaggerDocs = YAML.load("./swagger.yaml")
+// const YAML= require("yamljs")
+// const swaggerDocs = YAML.load("./swagger.yaml")
 
 //sercurity
 const rateLimiter = require('express-rate-limit')
@@ -49,7 +49,7 @@ app.use([express.urlencoded({ extended: false }), express.json()])
   res.send('<h1>Job API</h1><a href="/api-docs">Documation<a>')
 })
 //
-.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+// .use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
   .use("/api/v1/weapon", middleAuth, Weapons)
   .use("/api/v1/auth", Auth)
