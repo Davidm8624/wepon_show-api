@@ -20,7 +20,7 @@ const auth = async (req, res, next) => {
         req.user = { userID: payload.userID, name: payload.name }
         next()
     } catch (err) {
-        throw new UnauthError('authorization invlid');
+        throw new UnauthError('authorization invlid'); 
     }
 }
 
