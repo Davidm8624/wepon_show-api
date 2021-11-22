@@ -35,6 +35,7 @@ const createWeapon = async (req, res) => {
 const EditWeapon = async (req, res) => {
     
 }
+
 const DeleteWeapon = async (req, res) => {
     const{
         params: {id: createdAt},
@@ -42,7 +43,7 @@ const DeleteWeapon = async (req, res) => {
     } = req
 
     const weapon = await WeaponSchema.findByIdAndRemove({
-        _id: jobID,
+        _id: WeaponID,
         createdBy: userID,
     })
     if (!weapon){
@@ -61,4 +62,4 @@ module.exports = {
     createWeapon,
     EditWeapon,
     DeleteWeapon,
-  };
+};
