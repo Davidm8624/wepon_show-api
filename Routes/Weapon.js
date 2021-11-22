@@ -4,6 +4,7 @@ const router = express.Router();
 const {
     getAllEquipment,
     getWeaponByName,
+    getWeaponByType,
     getWeaponByAttributes,
     getWeaponByMaterial,
     getWeaponByPrice,
@@ -15,11 +16,8 @@ const {
 
 router.route("/").get(getAllEquipment).post(createWeapon)
 router.route("/:id").put(EditWeapon).delete(DeleteWeapon)
-router.route("/:byname").get(getWeaponByName)
-router.route("/:byattributes").get(getWeaponByAttributes)
-router.route("/:bymaterial").get(getWeaponByMaterial)
-router.route("/:byprice").get(getWeaponByPrice)
-router.route("/:cart").get(getInCart)
+router.route("/by").get(getWeaponByType)(getWeaponByName).get(getWeaponByAttributes).get(getWeaponByMaterial).get(getWeaponByPrice).get(getInCart)
+
 
 
 module.exports = router;
