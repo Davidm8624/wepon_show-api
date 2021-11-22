@@ -6,10 +6,12 @@ const WeaponSchema = require('../Models/Weapon-Schema');
 
 
 const getAllEquipment = async (req, res) => {
-    const weapons = await WeaponSchema.find({});
+    const weapons = await WeaponSchema.find({createdBy: req.user.userID }).sort('createdAt');
     // this is returned to the user as a JSON to be used with the data
-    res.json({ method: req.method, weapons: weapons });
+    res.status(StatusCodes.OK).json({ weapons, count: weapons.length })
 }
+
+
 const getWeaponByName = async (req, res) => {
     
 }
