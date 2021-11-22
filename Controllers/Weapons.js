@@ -38,8 +38,8 @@ const EditWeapon = async (req, res) => {
 
 const DeleteWeapon = async (req, res) => {
     const{
-        params: {id: createdAt},
-        weapon: {id}
+        User: {userID},
+        params: {id: WeaponID},
     } = req
 
     const weapon = await WeaponSchema.findByIdAndRemove({
@@ -49,7 +49,7 @@ const DeleteWeapon = async (req, res) => {
     if (!weapon){
         throw new NotFoundError(`no weapon names ${weapon}`)
     }
-    res.status(StatusCodes.OK).json({weapons})
+    res.status(StatusCodes.OK).json({weapon})
 }
 
 module.exports = {
