@@ -52,6 +52,7 @@ const DeleteWeapon = async (req, res) => {
     res.status(StatusCodes.OK).json({weapon})
 }
 
+
 module.exports = {
     getAllEquipment,
     getWeaponByName,
