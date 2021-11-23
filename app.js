@@ -28,7 +28,7 @@ const xss = require('xss-clean')
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-app.use([express.urlencoded({ extended: false }), express.json()])
+app
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //rateLimiter just limits the amount of alls that an ip can make to your api
@@ -53,7 +53,7 @@ app.use([express.urlencoded({ extended: false }), express.json()])
 
   .use("/api/v1/weapon", middleAuth, Weapons)
   .use("/api/v1/auth", Auth)
-.use(errorMiddlewere)
+// .use(errorMiddlewere)
 .use(notFoundMiddlewere)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //Variable Declarations

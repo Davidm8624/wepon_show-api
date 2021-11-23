@@ -118,6 +118,10 @@ const WeaponSchema = new mongoose.Schema({
     required: [true, "Must set Price"],
     minimum: 1,
   },
+  cart:{
+    type: Boolean,
+        default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

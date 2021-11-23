@@ -28,6 +28,13 @@ const UserSchema = new mongoose.Schema({
     // maxlength: 12,
     minlength: 6,
   },
+  cart: [
+    {
+      Name: { type: String },
+      Price: { type: Number },
+      CreatedBy: { type: mongoose.Types.ObjectId, ref: 'user' }
+    }
+  ]
   //min length 6 chars
 }).pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, await bcrypt.genSalt(10));

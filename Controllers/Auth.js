@@ -21,7 +21,7 @@ const Register = async (req, res) => {
 
   const newUser = await User.create(req.body);
   const token = newUser.createJWT();
-  res.json({ user: { name: newUser.name }, token });
+  res.json({ user: { name: newUser.name, id: newUser.userID }, token });
   // res.json(req.body)
 
   // res.json({ status: 200, msg: "succuss- user created" });
@@ -46,7 +46,7 @@ const Login = async (req, res) => {
   }
 
   const token = userLogin.createJWT();
-  res.json({ user: { name: userLogin.name }, token });
+  res.json({ user: { name: userLogin.name, userID: userLogin._id }, token });
 };
 
 module.exports = { Register, Login };

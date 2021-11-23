@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getAllEquipment,
   createWeapon,
-  EditWeapon,
+  AddToCart,
   DeleteWeapon,
 } = require("../Controllers/Weapons");
 
@@ -15,6 +15,6 @@ router.route("/").get(getAllEquipment).post(createWeapon);
 //   .get(getWeaponByMaterial)
 //   .get(getWeaponByPrice)
 //   .get(getInCart);
-router.route("/:id").put(EditWeapon).delete(DeleteWeapon);
+router.route("/:id").put(AddToCart).delete(DeleteWeapon);
 
 module.exports = router;

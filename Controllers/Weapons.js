@@ -5,7 +5,7 @@ const { BadRequsetError, BadRequestError } = require("../Error");
 const WeaponSchema = require("../Models/Weapon-Schema");
 
 const getAllEquipment = async (req, res) => {
-  const { EquipmentType, name, Attribute1, Attribute2, Material, Price } =
+  const { EquipmentType, name, Attribute1, Attribute2, Material, filters, cart } =
     req.query;
   let queryObject = {};
 
@@ -26,7 +26,7 @@ const getAllEquipment = async (req, res) => {
   }
 
   if (filters) {
-    const options = ["price"];
+    const options = ["Price"];
     const operatorMap = {
       ">": "$gt",
       ">=": "$gte",
@@ -48,28 +48,33 @@ const getAllEquipment = async (req, res) => {
       }
     });
   }
-  let results = Product.find(queryObject);
+  let results = await WeaponSchema.find(queryObject).sort("createdAt");
 
-  if (sort) {
-    const sortList = sort.split(",").join(" ");
-    results = results.sort(sortList);
-  } else {
-    results = results.sort("createdAt");
-  }
+  res.json({ results })
+
 };
 
-// const weapons = await WeaponSchema.find({createdBy: req.user.userID }).sort('createdAt');
-// // this is returned to the user as a JSON to be used with the data
-// res.status(StatusCodes.OK).json({ weapons, count: weapons.length })
+const AddToCart = async (req, res) => {
+  const { cart } = req.body
+  // const {userID} = req.user
+  const { id: weaponID } = req.params
 
-// const getInCart = async (req, res) => {
+  const weapon = await WeaponSchema.findByIdAndUpdate(
+    { _id: weaponID, /*createdBy: userID */ },
+    { $push: { cart: req.body } },
 
-// }
+    { new: true, runValidators: true, }
+  )
+
+  res.status(StatusCodes.OK).json({ weapon })
+
+}
+
 const createWeapon = async (req, res) => {
   const weapon = await WeaponSchema.create(req.body);
   res.json({ method: req.method, weapon: weapon, body: req.body });
 };
-const EditWeapon = async (req, res) => {};
+// const EditWeapon = async (req, res) => { };
 
 const DeleteWeapon = async (req, res) => {
   const {
@@ -89,6 +94,6 @@ const DeleteWeapon = async (req, res) => {
 module.exports = {
   getAllEquipment,
   createWeapon,
-  EditWeapon,
+  AddToCart,
   DeleteWeapon,
 };
