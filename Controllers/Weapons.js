@@ -25,8 +25,39 @@ const getAllEquipment = async (req, res) => {
       if (name) {
         queryObject.name = { $regex: name, options: "i" };
       }
+      
+      if (filters) {
+        const options = ["price"];
+        const operatorMap = {
+          ">": "$gt",
+          ">=": "$gte",
+          "=": "$eq",
+          "<=": "$lte",
+          "<": "$It",
+        };
+        const re = /\b(<|>|<=|=|>=)\b/g;
     
+        //filters=price>=30,rating>3
+        let newFilters = filters.replace(re, (match) => `-${operatorMap[match]}-`);
+        //filters=price-$gte-30,rating-$gt-3
+    
+        newFilters.split(",").forEach((item) => {
+          const [field, operator, value] = item.split("-");
+          //field = price, operator = $gte,value = 30
+          if (options.includes(field)) {
+            queryObject[field] = { [operator]: Number(value) };
+          }
+        });
+      
+    }let results = Product.find(queryObject);
+
+    if (sort) {
+      const sortList = sort.split(",").join(" ");
+      results = results.sort(sortList);
+    } else {
+      results = results.sort("createdAt");
     }
+  }
 
     // const weapons = await WeaponSchema.find({createdBy: req.user.userID }).sort('createdAt');
     // // this is returned to the user as a JSON to be used with the data
@@ -64,12 +95,6 @@ const DeleteWeapon = async (req, res) => {
 
 module.exports = {
     getAllEquipment,
-    getWeaponByName,
-    getWeaponByType,
-    getWeaponByAttributes,
-    getWeaponByMaterial,
-    getWeaponByPrice,
-    getInCart,
     createWeapon,
     EditWeapon,
     DeleteWeapon,
