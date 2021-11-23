@@ -1,3 +1,4 @@
-const notFoundMiddlewere = (req, res) => res.status(404).send("route does not exist")
+const notFoundMiddlewere = (req, res) =>
+  res.status(404).send("route does not exist");
 
-module.exports = notFoundMiddlewere
+module.exports = notFoundMiddlewere;

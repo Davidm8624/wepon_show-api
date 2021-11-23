@@ -8,10 +8,7 @@ const {
   DeleteWeapon,
 } = require("../Controllers/Weapons");
 
-router
-  .route("/")
-  .get(getAllEquipment)
-  .post(createWeapon)
+router.route("/").get(getAllEquipment).post(createWeapon);
 //   .get(getWeaponByType)
 //   .get(getWeaponByName)
 //   .get(getWeaponByAttributes)
