@@ -37,13 +37,13 @@ if(!email || !password){
 const userLogin = await User.findOne({email})
 
 if(!userLogin){
-  throw new UnauthError('Invailid Creafentials')
+  throw new UnauthError('Invailid Credentials')
 }
 
 const isPasswordCorrect = await userLogin.comparePassword(password)
 
 if(!isPasswordCorrect){
-  throw new UnauthError('Invailid Creafentials')
+  throw new UnauthError('Invailid Credentials')
 }
 
 const token = userLogin.createJWT()
