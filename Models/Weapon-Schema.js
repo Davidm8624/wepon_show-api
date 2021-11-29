@@ -84,6 +84,8 @@ const WeaponSchema = new mongoose.Schema({
         "ice",
         "electricity",
         "ichor",
+        "arcane",
+        "psychic",
       ],
       message: "{VALUE} is not supported",
     },
