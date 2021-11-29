@@ -37,6 +37,22 @@ const WeaponSchema = new mongoose.Schema({
         "sickle",
         "parasol",
         "sai",
+
+        "combat scissors",
+        "flamberge",
+        "Cat o' nine tails",
+        "snake sword",
+        "hand cannon",
+        "claw gloves",
+        "tekko kagi",
+        "shield",
+        "lance",
+        "nunchucks",
+        "blow dart",
+        "twin blade sword",
+        "slapstick",
+        "combat bees"
+
       ],
       message: "{VALUE} is not supported",
     },
