@@ -8,7 +8,7 @@ const app = express();
 const connectDB = require("./DB/connect");
 
 //routes
-const { Auth, Weapons } = require("./Routes");
+const { Auth, Weapons, Armor } = require("./Routes");
 
 //middleware
 const middleAuth = require('./Middleware/Auth')
@@ -52,6 +52,7 @@ app
 // .use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
   .use("/api/v1/weapon", middleAuth, Weapons)
+  .use("/api/v1/armor", middleAuth, Armor)
   .use("/api/v1/auth", Auth)
 // .use(errorMiddlewere)
 .use(notFoundMiddlewere)

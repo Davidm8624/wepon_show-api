@@ -5,8 +5,9 @@ const { BadRequsetError, BadRequestError } = require("../Error");
 const WeaponSchema = require("../Models/Weapon-Schema");
 
 const getAllEquipment = async (req, res) => {
-  const { EquipmentType, name, Attribute1, Attribute2, Material, filters, cart } =
-    req.query;
+  const { EquipmentType, name, Attribute1, Attribute2, Material, filters, cart } = req.query;
+  // const userCart = { userID };
+
   let queryObject = {};
 
   if (EquipmentType) {
@@ -24,6 +25,15 @@ const getAllEquipment = async (req, res) => {
   if (name) {
     queryObject.name = { $regex: name, options: "i" };
   }
+
+
+  // if (cart) {
+  //   userCart
+
+  //   let results = await WeaponSchema.find({}).sort("createdAt");
+
+  // res.json({ results: results })
+  // }
 
   if (filters) {
     const options = ["Price"];
@@ -54,21 +64,21 @@ const getAllEquipment = async (req, res) => {
 
 };
 
-const AddToCart = async (req, res) => {
-  const { cart } = req.body
-  // const {userID} = req.user
-  const { id: weaponID } = req.params
+// const AddToCart = async (req, res) => {
+//   userCart = req.body
+//   // const {userID} = req.user
+//   const { id: weaponID } = req.params
 
-  const weapon = await WeaponSchema.findByIdAndUpdate(
-    { _id: weaponID, /*createdBy: userID */ },
-    { $push: { cart: req.body } },
+//   const weapon = await WeaponSchema.findByIdAndUpdate(
+//     { _id: weaponID, /*createdBy: userID */ },
+//     { $push: { cart: req.body } },
 
-    { new: true, runValidators: true, }
-  )
+//     { new: true, runValidators: true, }
+//   )
 
-  res.status(StatusCodes.OK).json({ weapon })
+//   res.status(StatusCodes.OK).json({ weapon })
 
-}
+// }
 
 const createWeapon = async (req, res) => {
   const weapon = await WeaponSchema.create(req.body);
@@ -86,14 +96,16 @@ const DeleteWeapon = async (req, res) => {
     createdBy: userID,
   });
   if (!weapon) {
-    throw new NotFoundError(`no weapon names ${weapon}`);
+    throw new NotFoundError(`no weapon named ${weapon}`);
   }
   res.status(StatusCodes.OK).json({ weapon });
 };
 
+
+
 module.exports = {
   getAllEquipment,
   createWeapon,
-  AddToCart,
+  // AddToCart,
   DeleteWeapon,
 };

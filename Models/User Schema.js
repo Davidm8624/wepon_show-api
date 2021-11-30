@@ -29,11 +29,7 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
   },
   cart: [
-    {
-      Name: { type: String },
-      Price: { type: Number },
-      CreatedBy: { type: mongoose.Types.ObjectId, ref: 'user' }
-    }
+    
   ]
   //min length 6 chars
 }).pre("save", async function (next) {

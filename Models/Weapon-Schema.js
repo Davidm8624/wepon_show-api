@@ -51,7 +51,8 @@ const WeaponSchema = new mongoose.Schema({
         "blow dart",
         "twin blade sword",
         "slapstick",
-        "combat bees"
+        "explosive",
+        "war hammer"
 
       ],
       message: "{VALUE} is not supported",
@@ -79,6 +80,7 @@ const WeaponSchema = new mongoose.Schema({
         "ichor",
         "arcane",
         "psychic",
+        "bees"
       ],
       message: "{VALUE} is not supported",
     },
@@ -102,6 +104,7 @@ const WeaponSchema = new mongoose.Schema({
         "ichor",
         "arcane",
         "psychic",
+        "bees"
       ],
       message: "{VALUE} is not supported",
     },
@@ -138,10 +141,8 @@ const WeaponSchema = new mongoose.Schema({
     required: [true, "Must set Price"],
     minimum: 1,
   },
-  cart:{
-    type: Boolean,
-        default: false
-  },
+  cart:[]
+  ,
   createdAt: {
     type: Date,
     default: Date.now(),
