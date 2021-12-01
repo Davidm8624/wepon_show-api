@@ -44,13 +44,9 @@ app
 .use(cors())
 //user sanitation, this pervents SOME user based hacking
 .use(xss())
-.get('/', (req,res) => {
-  res.send('<h1>weapon api thingy</h1>')
-})
 
-.get('/', (req, res)=>{
-  res.send('<h1>Job API</h1><a href="/api-docs">Documation<a>')
-})
+
+.use(express.static('./public'))
 //
 // .use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
