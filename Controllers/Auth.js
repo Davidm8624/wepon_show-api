@@ -1,8 +1,8 @@
-const { BadRequestError, NotFound, UnauthError } = require("../Error/Index");
-const jwt = require("jsonwebtoken");
+const { BadRequestError, UnauthError } = require("../Error/Index");
+// const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const User = require("../Models/User Schema");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 const Register = async (req, res) => {
   // encrypting is storing your data behind a firewall
