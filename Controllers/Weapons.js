@@ -96,7 +96,7 @@ const DeleteWeapon = async (req, res) => {
     createdBy: userID,
   });
   if (!weapon) {
-    throw new NotFoundError(`no weapon named ${weapon}`);
+    throw new Error(`no weapon named ${weapon}`);
   }
   res.status(StatusCodes.OK).json({ weapon });
 };
