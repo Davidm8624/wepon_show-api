@@ -64,7 +64,7 @@ const DeleteArmor = async (req, res) => {
         createdBy: userID,
     });
     if (!Armor) {
-        throw new NotFoundError(`no Armor named ${Armor}`);
+        throw new Error(`no Armor named ${Armor}`);
     }
     res.status(StatusCodes.OK).json({ Armor });
 };
